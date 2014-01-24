@@ -21,8 +21,7 @@ for current_row=1:1:height_b
   % snippet taken from the second lecture
   row_diff = (a - repmat(b(current_row, :), height_a, 1));
   row_dist = sqrt(sum(row_diff .* row_diff, 2));
-  % size(dist(current_row, :))
-  % size(row_dist)
+
   dist(current_row, :) = row_dist';
 end
 
