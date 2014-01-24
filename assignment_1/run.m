@@ -33,7 +33,7 @@ if (do_dist_test)
   dist1 = dist_1(a,b);
   fprintf('Finished dist_1 in %0.3f seconds\n',toc);
   tic;
-  % dist2 = dist_2(a,b);
+  dist2 = dist_2(a,b);
   fprintf('Finished dist_2 in %0.3f seconds\n',toc);
 
   % check should be close to 0
