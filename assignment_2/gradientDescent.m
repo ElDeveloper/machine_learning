@@ -17,10 +17,12 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
+    % the otherwise summatory function that we would need to evaluate can be
+    % vectorized if we compute the vector X*theta-y and then multiply it by the
+    % training set. Note that we transpose X to make it 'multipliable' by the
+    % other term. This form was noted in the lecture of gradient descent for
+    % the case of logistic regression
+    theta = theta - (1/m)*alpha*(X'*(X*theta-y));
 
 
     % ============================================================
