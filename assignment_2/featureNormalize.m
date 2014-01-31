@@ -25,14 +25,18 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
+[num_examples, num_features] = size(X);
 
+% apply along the first dimension to compute on a per-column basis
+mu = mean(X, 1);
+sigma = std(X, 0, 1);
 
+% taking advantage of vectorization we just make a matrix operation over X
+% where we subtrac the matrix means and then divide by the matrix of stds
+matrix_mu = repmat(mu, num_examples, 1);
+matrix_sigma = repmat(sigma, num_examples, 1);
 
-
-
-
-
-
+X_norm = (X-matrix_mu)./matrix_sigma;
 
 % ============================================================
 
