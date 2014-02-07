@@ -20,12 +20,17 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% the most important thing to note here is that the argument to the sigmoid
+% function is the transpose of theta multiplied by X, however we don't have
+% transpose theta, because theta is already a column vector
+J = (-y'*log(sigmoid(X*theta)) - (1-y')*log(1-sigmoid(X*theta)))/m;
 
-
-
-
-
-
+% the otherwise summatory function that we would need to evaluate can be
+% vectorized if we compute the vector X*theta-y and then multiply it by the
+% training set. Note that we transpose X to make it 'multipliable' by the
+% other term. This form was noted in the lecture of gradient descent for
+% the case of logistic regression as well as in the lecture with Prof. Wilder
+grad = (X'*(sigmoid(X*theta)-y))/m;
 
 % =============================================================
 
