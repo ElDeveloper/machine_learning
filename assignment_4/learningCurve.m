@@ -54,7 +54,29 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+for i = 1:m
+  % Compute train/cross validation errors using training examples
+  % X(1:i, :) and y(1:i), storing the result in
+  % error_train(i) and error_val(i)
 
+  % This note is as added by Yoshiki from the past:
+  % The gist of all of these computations is to know that to calculate a
+  % learning curve you must first compute the theta parameters for the training
+  % set and use these values of theta to calculate the error for the cross-vali-
+  % dation set.
+  %
+  % the reason why we can use linearRegCostFunction is because if lambda is zero
+  % it is basically just the error function for either the training or cv set
+  theta_train = trainLinearReg(X(1:i, :), y(1:i), lambda);
+  [J_train, grad_train] = linearRegCostFunction(X(1:i, :), y(1:i), ...
+                                                theta_train, 0);
+  error_train(i) = J_train;
+
+  [J_cv, grad_cv] = linearRegCostFunction(Xval, yval, ...
+                                          theta_train, 0);
+  error_val(i) = J_cv;
+
+end
 
 
 
