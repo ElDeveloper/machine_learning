@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 10;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit
@@ -218,3 +218,17 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+%% =========== Part 9: Ungraded exercise =============
+%  You will now implement validationCurve to test various values of 
+%  lambda on a validation set. You will then use this to select the
+%  "best" lambda value.
+%
+
+[e_train e_val] = learningCurveRandom(X_poly, y, X_poly_val, yval, 0.010000);
+figure(2);
+plot(1:1:12, e_train, 1:1:12, e_val);
+title('Polynomial Regression Learning Curve (lambda = 0.010000)')
+legend('Train', 'Cross Validation');
+xlabel('Number of training examples');
+ylabel('Error');
