@@ -62,23 +62,30 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+temp_y = zeros(size(y, 1), 10);
+vector = zeros(1, 10);
 
+% convert y into a 10 element vector per element
+for value=1:10
+  temp_vector = vector;
+  temp_vector(value) = 1;
+  indices = find(y == value);
+  temp_y(indices, :) = repmat(temp_vector, size(indices, 1), 1);
+end
+y = temp_y;
 
+% X = [ones(m, 1), X];
 
+for i=1:m
+  % apply the sigmoid function to each of the layers
+  biased_l1 = sigmoid([1 X(i, :)]*Theta1');
+  sigmoid_term = sigmoid([1 biased_l1]*Theta2');
 
+  J = J + ( (-y(i, :)*log(sigmoid_term)') - (1-y(i, :))*log(1 - sigmoid_term)')/m;
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
+% regularization term -- not using the first column in the matrix
+J = J + (lambda*(sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:, 2:end).^2, 2))))/(2*m);
 
 % -------------------------------------------------------------
 
@@ -86,6 +93,5 @@ Theta2_grad = zeros(size(Theta2));
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
-
 
 end
