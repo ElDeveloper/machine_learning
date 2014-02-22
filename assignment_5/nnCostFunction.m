@@ -74,13 +74,12 @@ for value=1:num_labels
 end
 y = temp_y;
 
-% X = [ones(m, 1), X];
+X1 = [ones(m, 1), X];
 
 for i=1:m
   % apply the sigmoid function to each of the layers
-  biased_l1 = sigmoid([1 X(i, :)]*Theta1');
+  biased_l1 = sigmoid(X1(i, :)*Theta1');
   sigmoid_term = sigmoid([1 biased_l1]*Theta2');
-
   J = J + ( (-y(i, :)*log(sigmoid_term)') - (1-y(i, :))*log(1 - sigmoid_term)')/m;
 end
 
@@ -89,7 +88,31 @@ J = J + (lambda*(sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:, 2:end).^2,
 
 % -------------------------------------------------------------
 
+accumulated_delta = 0;
+
+for t=1:m
+  % step 1
+  a_1 = [1 X(t, :)];
+  z_2 = a_1*Theta1';
+  a_2 = [1 sigmoid(z_2)]; % this term is equal to z_2
+  z_3 = a_2*Theta2';
+  a_3 = sigmoid(z_3); % this term is equal to z_3 and hO(x)
+
+  % step 2
+  delta_3 = z_3 - y(i, :);
+
+  % step 3
+  delta_2 = (Theta2'*delta_3').*sigmoidGradient([1 z_2])';
+  delta_2 = delta_2(2:end);
+
+  % step 4
+  Theta1_grad = Theta1_grad + delta_2*a_1;
+  Theta2_grad = Theta2_grad + delta_3'*a_2;
+end
 % =========================================================================
+
+Theta1_grad = Theta1_grad/m;
+Theta2_grad = Theta2_grad/m;
 
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
