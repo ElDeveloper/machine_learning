@@ -62,11 +62,11 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-temp_y = zeros(size(y, 1), 10);
-vector = zeros(1, 10);
+temp_y = zeros(m, num_labels);
+vector = zeros(1, num_labels);
 
-% convert y into a 10 element vector per element
-for value=1:10
+% convert y into a num_labels element vector per element
+for value=1:num_labels
   temp_vector = vector;
   temp_vector(value) = 1;
   indices = find(y == value);
