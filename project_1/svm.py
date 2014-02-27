@@ -49,6 +49,14 @@ fd = open('results.txt','a')
 fd.write('The score is %f, C=%f, gamma=%f\n' % (score, C, gamma))
 fd.close()
 
+X_test_scaled = scaler.transform(X_test)
+predictions = clf.predict(X_test_scaled)
 
+# writting out the solutions file
+fd = open('solutions.csv', 'w')
+fd.write('Id,Prediction\n')
+for index, prediction in enumerate(predictions):
+    fd.write('%d,%d\n' % (index, prediction))
+fd.close()
 
 
