@@ -25,6 +25,9 @@ sdist
 develop-eggs
 .installed.cfg
 
+# torque stuff
+jobs
+
 # installer logs
 pip-log.txt
 
@@ -52,3 +55,6 @@ hw*
 *.exe
 *.o
 *.so
+
+# ipython stuff
+.ipynb_checkpoints
