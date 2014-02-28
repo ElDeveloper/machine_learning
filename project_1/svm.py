@@ -53,10 +53,11 @@ X_test_scaled = scaler.transform(X_test)
 predictions = clf.predict(X_test_scaled)
 
 # writting out the solutions file
-fd = open('solutions.csv', 'w')
+fd = open('solutions_%f_%f.csv' % (C,gamma), 'w')
 fd.write('Id,Prediction\n')
 for index, prediction in enumerate(predictions):
-    fd.write('%d,%d\n' % (index, prediction))
+    # add one to the index because identifieres in kaggle start at 1
+    fd.write('%d,%d\n' % (index+1, prediction))
 fd.close()
 
 
