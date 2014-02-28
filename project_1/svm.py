@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+from __future__ import division
+
+__author__ = "Yoshiki Vazquez Baeza"
+__copyright__ = "Copyright 2013, Yoshiki Vazquez Baeza"
+__credits__ = ["Yoshiki Vazquez Baeza"]
+__license__ = "BSD"
+__version__ = "unversioned"
+__maintainer__ = "Yoshiki Vazquez Baeza"
+__email__ = "yoshiki89@gmail.com"
 
 from sys import argv
 
