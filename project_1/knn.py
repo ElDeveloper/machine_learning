@@ -76,6 +76,6 @@ for element in parameters:
 
 fd = open('knn_results.txt', 'w')
 fd.write('Distance %s\n' % results_distance)
-fd.write('Uniform %s\n' % resutls_uniform)
+fd.write('Uniform %s\n' % results_uniform)
 fd.close()
 
