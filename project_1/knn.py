@@ -66,7 +66,7 @@ for element in parameters:
     if element[1] == 'distance':
         model = KNeighborsClassifier(n_neighbors=element[0], weights=element[1])
         model.fit(X_train_scaled, Y_train)
-        results_distance.apend(model.score(X_validation_scaled, Y_validation))
+        results_distance.append(model.score(X_validation_scaled, Y_validation))
 
     else:
         model = KNeighborsClassifier(n_neighbors=element[0], weights=element[1])
