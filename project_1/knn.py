@@ -47,7 +47,13 @@ X_validation_scaled = array(scaler.transform(X_validation), dtype=float)
 
 results_distance = []
 results_uniform = []
-parameters = [(20, 'distance'),
+parameters = [(10, 'distance'),
+              (10, 'uniform'),
+              (13, 'distance'),
+              (13, 'uniform'),
+              (15, 'distance'),
+              (15, 'uniform'),
+              (20, 'distance'),
               (20, 'uniform'),
               (30, 'distance'),
               (30, 'uniform'),
